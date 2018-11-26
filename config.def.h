@@ -61,5 +61,11 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+	{ cpu_perc, "[CPU %3s%%]", NULL },
+	{ temp, "[🌡️%3s°C]" ,"/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input" },
+	{ ram_perc, "[RAM %3s%%]", NULL },
+	{ run_command, "[🔈%4s]", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
+	{ wifi_perc, "[📶%3s%%]", "wls3" },
+	{ battery_perc, "[🔋%3s%%]", "BAT0" },
+	{ datetime, "[%s]", "%d.%m.%Y %T" },
 };
