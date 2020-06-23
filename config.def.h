@@ -63,11 +63,13 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ cpu_perc, "[CPU %3s%%]", NULL },
-	{ temp, "[🌡️%3s°C]" ,"/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input" },
-	{ ram_perc, "[RAM %3s%%]", NULL },
-	{ run_command, "[🔈%4s]", "pamixer --get-volume" },
-	{ wifi_perc, "[📶%3s%%]", "wls3" },
-	{ battery_perc, "[🔋%3s%%]", "BAT0" },
-	{ datetime, "[%s]", "%d.%m.%Y %T" },
+	{ cpu_perc, "[🖥%2s%%|", NULL },
+	{ temp, "%2s°C|" ,"/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input" },
+	{ ram_perc, "%2s%%]", NULL },
+	{ run_command, "[%s", "pamixer --get-mute | sed 's/false//;s/true/🔇/'" },
+	{ run_command, "%s]", "pamixer --get-volume" },
+	{ wifi_perc, "[📶%s%%]", "wls3" },
+	{ run_command, "[%s", "batterystatus BAT0" },
+	{ battery_perc, "%s%%]", "BAT0" },
+	{ run_command, "[%s]", "date '+%a.%d.%b.⏲️%H:%M'" },
 };
